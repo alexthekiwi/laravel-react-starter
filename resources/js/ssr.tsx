@@ -6,7 +6,7 @@ import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import route from '../../vendor/tightenco/ziggy/dist/index.m';
 import Providers from './components/common/Providers';
 
-const appName = 'Laravel';
+const appName = 'MyApp';
 
 createServer((page) =>
     createInertiaApp({

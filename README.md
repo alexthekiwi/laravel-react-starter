@@ -4,6 +4,11 @@ This project uses Vite with React.js, TypeScript and TailwindCSS. It comes with 
 See `./composer.json` and `./package.json` for the full list of pre-installed and configured dependencies.
 
 ## Installation
+Replace all instances of "MyApp". This appears in the following files:
+- .env.example (`DB_DATABASE`)
+- /resources/js/app.tsx
+- /resources/js/ssr.tsx
+
 Create an environment file, and populate it according to your local setup:
 ```
 cp .env.example .env
@@ -17,6 +22,16 @@ composer install
 Install JavaScript dependencies:
 ```
 npm install
+```
+
+Generate an application key:
+```
+php artisan key:generate
+```
+
+Migrate the database:
+```
+php artisan migrate
 ```
 
 ---

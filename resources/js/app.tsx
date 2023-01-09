@@ -8,7 +8,7 @@ import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import Providers from './components/common/Providers';
 
 const appName =
-    window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel';
+    window.document.getElementsByTagName('title')[0]?.innerText || 'MyApp';
 
 createInertiaApp({
     title: (title) => `${title} | ${appName}`,
