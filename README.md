@@ -8,6 +8,8 @@ Replace all instances of "MyApp". This appears in the following files:
 - .env.example (`DB_DATABASE`)
 - /resources/js/app.tsx
 - /resources/js/ssr.tsx
+- /resources/js/components/common/Header.tsx
+- /resources/js/components/common/Footer.tsx
 
 Create an environment file, and populate it according to your local setup:
 ```
