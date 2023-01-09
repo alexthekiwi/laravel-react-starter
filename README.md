@@ -5,6 +5,7 @@ See `./composer.json` and `./package.json` for the full list of pre-installed an
 
 ## Installation
 Replace all instances of "MyApp". This appears in the following files:
+- /config/app.php
 - .env.example (`DB_DATABASE`)
 - /resources/js/app.tsx
 - /resources/js/ssr.tsx
@@ -35,6 +36,8 @@ Migrate the database:
 ```
 php artisan migrate
 ```
+
+**Note: I set the timezone in `/config/app.php` to "Pacific/Auckland". Change this to suit.**
 
 ---
 
