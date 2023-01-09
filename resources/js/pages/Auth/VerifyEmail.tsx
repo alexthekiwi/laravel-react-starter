@@ -22,7 +22,7 @@ export default function VerifyEmail({ status }: Props) {
         <Layout>
             <Head title="Email Verification" />
 
-            <div className="container py-12">
+            <div className="container my-24 max-w-2xl">
                 <Card>
                     <div className="mb-4 text-gray-600">
                         Thanks for signing up! Before getting started, could you
@@ -38,7 +38,11 @@ export default function VerifyEmail({ status }: Props) {
                     )}
                     <form onSubmit={submit}>
                         <div className="mt-4 flex items-center gap-6">
-                            <Button type="submit" disabled={processing}>
+                            <Button
+                                type="submit"
+                                disabled={processing}
+                                theme="primary"
+                            >
                                 Resend Verification Email
                             </Button>
                             <Link

@@ -4,7 +4,7 @@ import route from 'ziggy-js';
 import React from 'react';
 import { useAuth } from '@/lib/auth';
 import Button from '@/components/common/Button';
-import { handleChange } from '@/lib/forms';
+import { handleChange, useSubmit } from '@/lib/forms';
 
 interface Props {
     mustVerifyEmail: boolean;
@@ -19,16 +19,20 @@ export default function UpdateProfileInformation({
 }: Props) {
     const { user } = useAuth();
 
-    const { data, setData, put, errors, processing, recentlySuccessful } =
-        useForm({
-            name: user.name,
-            email: user.email,
-        });
+    const onSubmit = useSubmit({
+        message: 'Profile saved!',
+        preserveScroll: true,
+    });
+
+    const { data, setData, put, errors, processing } = useForm({
+        name: user.name,
+        email: user.email,
+    });
 
     function submit(e: React.FormEvent) {
         e.preventDefault();
 
-        put(route('profile.update'));
+        put(route('profile.update'), onSubmit);
     }
 
     return (
@@ -99,19 +103,10 @@ export default function UpdateProfileInformation({
                     </div>
                 )}
 
-                <div className="flex items-center gap-4">
-                    <Button type="submit" disabled={processing}>
+                <div className="flex items-center justify-end gap-4">
+                    <Button type="submit" disabled={processing} theme="primary">
                         Save
                     </Button>
-
-                    <Transition
-                        show={recentlySuccessful}
-                        enterFrom="opacity-0"
-                        leaveTo="opacity-0"
-                        className="transition ease-in-out"
-                    >
-                        <p className="text-sm text-gray-600">Saved.</p>
-                    </Transition>
                 </div>
             </form>
         </section>

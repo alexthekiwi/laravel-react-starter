@@ -4,6 +4,7 @@ import { createInertiaApp } from '@inertiajs/inertia-react';
 import createServer from '@inertiajs/server';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import route from '../../vendor/tightenco/ziggy/dist/index.m';
+import Providers from './components/common/Providers';
 
 const appName = 'Laravel';
 
@@ -24,7 +25,11 @@ createServer((page) =>
                     location: new URL(page.props.ziggy.location),
                 });
 
-            return <App {...props} />;
+            return (
+                <Providers>
+                    <App {...props} />
+                </Providers>
+            );
         },
     })
 );

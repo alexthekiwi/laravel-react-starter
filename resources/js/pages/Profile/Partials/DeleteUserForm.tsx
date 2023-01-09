@@ -3,7 +3,7 @@ import { useForm } from '@inertiajs/inertia-react';
 import route from 'ziggy-js';
 import Modal from '@/components/common/Modal';
 import Button from '@/components/common/Button';
-import { handleChange } from '@/lib/forms';
+import { handleChange, useSubmit } from '@/lib/forms';
 
 interface Props {
     className?: string;
@@ -12,6 +12,23 @@ interface Props {
 export default function DeleteUserForm({ className = '' }: Props) {
     const [confirmingUserDeletion, setConfirmingUserDeletion] = useState(false);
     const passwordInput = useRef<HTMLInputElement>();
+
+    function onSuccess() {
+        closeModal();
+        reset();
+    }
+
+    function onError() {
+        passwordInput.current?.focus();
+        reset();
+    }
+
+    const onDelete = useSubmit({
+        message: 'Account deleted successfully',
+        onSuccess,
+        onError,
+        preserveScroll: true,
+    });
 
     const {
         data,
@@ -31,12 +48,7 @@ export default function DeleteUserForm({ className = '' }: Props) {
     function deleteUser(e: React.FormEvent) {
         e.preventDefault();
 
-        destroy(route('profile.destroy'), {
-            preserveScroll: true,
-            onSuccess: () => closeModal(),
-            onError: () => passwordInput.current?.focus(),
-            onFinish: () => reset(),
-        });
+        destroy(route('profile.destroy'), onDelete);
     }
 
     function closeModal() {
@@ -59,9 +71,11 @@ export default function DeleteUserForm({ className = '' }: Props) {
                 </p>
             </header>
 
-            <Button theme="danger" onClick={confirmUserDeletion}>
-                Delete Account
-            </Button>
+            <div className="flex justify-end">
+                <Button theme="danger" onClick={confirmUserDeletion}>
+                    Delete Account
+                </Button>
+            </div>
 
             <Modal show={confirmingUserDeletion} onClose={closeModal}>
                 <form onSubmit={deleteUser}>
@@ -95,6 +109,7 @@ export default function DeleteUserForm({ className = '' }: Props) {
                             type="submit"
                             className="ml-3"
                             disabled={processing}
+                            theme="danger"
                         >
                             Delete Account
                         </Button>

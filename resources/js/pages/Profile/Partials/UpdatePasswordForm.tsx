@@ -1,50 +1,45 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { useForm } from '@inertiajs/inertia-react';
-import { Transition } from '@headlessui/react';
 import route from 'ziggy-js';
 import Button from '@/components/common/Button';
-import { handleChange } from '@/lib/forms';
+import { handleChange, useSubmit } from '@/lib/forms';
 
 interface Props {
     className?: string;
 }
 
 export default function UpdatePasswordForm({ className }: Props) {
-    const passwordInput = useRef<HTMLInputElement>();
-    const currentPasswordInput = useRef<HTMLInputElement>();
-
-    const {
-        data,
-        setData,
-        errors,
-        put,
-        reset,
-        processing,
-        recentlySuccessful,
-    } = useForm({
+    const { data, setData, errors, put, reset, processing } = useForm({
         current_password: '',
         password: '',
         password_confirmation: '',
     });
 
+    function onSuccess() {
+        reset();
+    }
+
+    function onError() {
+        if (errors.password) {
+            reset('password_confirmation');
+        }
+
+        if (errors.current_password) {
+            reset('current_password');
+        }
+    }
+
+    const onSubmit = useSubmit({
+        message: 'Password updated!',
+        onSuccess,
+        onError,
+        preserveScroll: true,
+    });
+
     function updatePassword(e: React.FormEvent) {
         e.preventDefault();
 
-        put(route('password.update'), {
-            preserveScroll: true,
-            onSuccess: () => reset(),
-            onError: () => {
-                if (errors.password) {
-                    reset('password', 'password_confirmation');
-                    passwordInput.current?.focus();
-                }
-
-                if (errors.current_password) {
-                    reset('current_password');
-                    currentPasswordInput.current?.focus();
-                }
-            },
-        });
+        put(route('password.update'), onSubmit);
     }
 
     return (
@@ -64,8 +59,6 @@ export default function UpdatePasswordForm({ className }: Props) {
                 <label>
                     Password
                     <input
-                        // @ts-ignore
-                        ref={currentPasswordInput}
                         id="current_password"
                         type="password"
                         name="current_password"
@@ -82,8 +75,6 @@ export default function UpdatePasswordForm({ className }: Props) {
                 <label>
                     Password
                     <input
-                        // @ts-ignore
-                        ref={passwordInput}
                         id="password"
                         type="password"
                         name="password"
@@ -114,19 +105,10 @@ export default function UpdatePasswordForm({ className }: Props) {
                     )}
                 </label>
 
-                <div className="flex items-center gap-4">
-                    <Button type="submit" disabled={processing}>
+                <div className="flex items-center justify-end gap-4">
+                    <Button type="submit" disabled={processing} theme="primary">
                         Save
                     </Button>
-
-                    <Transition
-                        show={recentlySuccessful}
-                        enterFrom="opacity-0"
-                        leaveTo="opacity-0"
-                        className="transition ease-in-out"
-                    >
-                        <p className="text-sm text-gray-600">Saved.</p>
-                    </Transition>
                 </div>
             </form>
         </section>

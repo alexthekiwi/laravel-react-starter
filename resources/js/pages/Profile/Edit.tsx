@@ -14,12 +14,12 @@ export default function Edit({ mustVerifyEmail, status }: Props) {
     return (
         <Layout>
             <Head title="Profile" />
-            <div className="container py-12">
+            <div className="container mt-12 mb-24">
                 <h1 className="mb-8 text-xl font-semibold leading-tight text-gray-800">
                     Profile
                 </h1>
 
-                <div className="flex flex-col gap-8">
+                <div className="mx-auto flex max-w-2xl flex-col gap-8">
                     <Card>
                         <UpdateProfileInformationForm
                             mustVerifyEmail={mustVerifyEmail}

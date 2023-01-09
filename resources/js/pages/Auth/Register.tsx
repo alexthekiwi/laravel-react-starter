@@ -35,7 +35,7 @@ export default function Register({ status }: Props) {
         <Layout>
             <Head title="Register" />
 
-            <div className="container py-12">
+            <div className="container my-24">
                 <Card className="mx-auto max-w-xl">
                     {status && (
                         <div className="mb-4 text-sm font-medium text-green-600">
@@ -116,6 +116,7 @@ export default function Register({ status }: Props) {
                                 className="ml-auto"
                                 type="submit"
                                 disabled={processing}
+                                theme="primary"
                             >
                                 Register
                             </Button>

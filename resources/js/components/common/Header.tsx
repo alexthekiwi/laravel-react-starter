@@ -1,7 +1,8 @@
 import { Link } from '@inertiajs/inertia-react';
 import route from 'ziggy-js';
 import { useAuth } from '@/lib/auth';
-import Dropdown from '../Dropdown';
+import Dropdown from '@/components/common/Dropdown';
+import NavLink from './NavLink';
 
 interface Props {
     //
@@ -11,18 +12,19 @@ export default function Header({}: Props) {
     const { user } = useAuth();
 
     return (
-        <header className="bg-gray-600 text-white">
+        <header className="flex min-h-[80px] items-center bg-gray-600 text-white">
             <div className="container flex items-center justify-between py-4">
                 <Link href="/">MyApp</Link>
                 <nav className="flex items-center gap-6 text-sm">
-                    <Link href="/">Home</Link>
+                    <NavLink href="/">Home</NavLink>
+                    {user && <NavLink href="/dashboard">Dashboard</NavLink>}
                     {user ? (
                         <Dropdown>
                             <Dropdown.Trigger>
                                 <span className="inline-flex rounded-md">
                                     <button
                                         type="button"
-                                        className="inline-flex items-center rounded-md border border-transparent bg-white px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out hover:text-gray-700 focus:outline-none dark:bg-gray-800 dark:hover:text-gray-300"
+                                        className="inline-flex min-w-[120px] items-center justify-between rounded-md border border-transparent bg-white px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out hover:text-gray-700 focus:outline-none dark:bg-gray-800 dark:hover:text-gray-300"
                                     >
                                         {user.name}
                                         <svg

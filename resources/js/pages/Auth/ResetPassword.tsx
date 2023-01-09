@@ -36,7 +36,7 @@ export default function ResetPassword({ token, email }: Props) {
         <Layout>
             <Head title="Reset Password" />
 
-            <div className="container py-12">
+            <div className="container my-24">
                 <Card className="mx-auto max-w-xl">
                     <form className="flex flex-col gap-8" onSubmit={submit}>
                         <label>
@@ -91,6 +91,7 @@ export default function ResetPassword({ token, email }: Props) {
                                 className="ml-auto"
                                 type="submit"
                                 disabled={processing}
+                                theme="primary"
                             >
                                 Reset Password
                             </Button>

@@ -32,7 +32,7 @@ export default function ForgotPassword({ status }: Props) {
         <Layout>
             <Head title="Confirm Password" />
 
-            <div className="container py-12">
+            <div className="container my-24">
                 <Card className="mx-auto max-w-xl">
                     <div className="mb-4 text-sm text-gray-600">
                         This is a secure area of the application. Please confirm
@@ -67,6 +67,7 @@ export default function ForgotPassword({ status }: Props) {
                                 className="ml-auto"
                                 type="submit"
                                 disabled={processing}
+                                theme="primary"
                             >
                                 Confirm
                             </Button>

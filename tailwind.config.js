@@ -19,7 +19,7 @@ module.exports = {
                 sans: ['Inter', ...defaultTheme.fontFamily.sans],
             },
             colors: {
-                primary: '#707070',
+                // Add your colors here
             },
             transitionTimingFunction: {
                 DEFAULT: 'cubic-bezier(0.4, 0, 0.2, 1)',

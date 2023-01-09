@@ -24,7 +24,7 @@ export default function ForgotPassword({ status }: Props) {
         <Layout>
             <Head title="Forgot Password" />
 
-            <div className="container py-12">
+            <div className="container my-24">
                 <Card className="mx-auto max-w-xl">
                     <div className="mb-4 text-sm text-gray-600">
                         Forgot your password? No problem. Just let us know your
@@ -58,6 +58,7 @@ export default function ForgotPassword({ status }: Props) {
                                 className="ml-auto"
                                 type="submit"
                                 disabled={processing}
+                                theme="primary"
                             >
                                 Email Password Reset Link
                             </Button>

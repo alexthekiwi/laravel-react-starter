@@ -4,7 +4,7 @@ import route from 'ziggy-js';
 import Layout from '@/layouts/Layout';
 import Button from '@/components/common/Button';
 import Card from '@/components/common/Card';
-import { handleChange } from '@/lib/forms';
+import { handleChange, useSubmit } from '@/lib/forms';
 
 interface Props {
     status?: string;
@@ -18,6 +18,8 @@ export default function Login({ status, canResetPassword }: Props) {
         remember: '',
     });
 
+    const onSubmit = useSubmit({ message: 'Login successful!' });
+
     useEffect(
         () => () => {
             reset('password');
@@ -28,14 +30,14 @@ export default function Login({ status, canResetPassword }: Props) {
     function submit(e: React.FormEvent) {
         e.preventDefault();
 
-        post(route('login'));
+        post(route('login'), onSubmit);
     }
 
     return (
         <Layout>
             <Head title="Log in" />
 
-            <div className="container py-12">
+            <div className="container my-24">
                 <Card className="mx-auto max-w-xl">
                     {status && (
                         <div className="mb-4 text-sm font-medium text-green-600">
@@ -98,6 +100,7 @@ export default function Login({ status, canResetPassword }: Props) {
                                 className="ml-auto"
                                 type="submit"
                                 disabled={processing}
+                                theme="primary"
                             >
                                 Log in
                             </Button>

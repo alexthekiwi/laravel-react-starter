@@ -1,4 +1,6 @@
 import React from 'react';
+import { VisitOptions } from '@inertiajs/inertia';
+import { useToast } from './toast';
 
 interface Props {
     event: React.SyntheticEvent<
@@ -21,4 +23,53 @@ export function handleChange({ event, data, setData }: Props) {
               event.currentTarget.checked
             : event.currentTarget.value
     );
+}
+
+interface UseSubmitOptions {
+    message?: string;
+    onError?: () => void;
+    onSuccess?: () => void;
+    onFinish?: () => void;
+    preserveScroll?: boolean;
+}
+
+export function useSubmit({
+    message,
+    onSuccess,
+    onError,
+    onFinish,
+    preserveScroll = false,
+}: UseSubmitOptions = {}): VisitOptions {
+    const { addToast } = useToast();
+
+    return {
+        preserveScroll,
+        onSuccess: () => {
+            addToast({
+                message: message ?? 'Success!',
+                status: 'success',
+            });
+
+            if (onSuccess) {
+                onSuccess();
+            }
+        },
+        onError: (errors) => {
+            Object.values(errors).forEach((err) => {
+                addToast({
+                    message: err,
+                    status: 'error',
+                });
+            });
+
+            if (onError) {
+                onError();
+            }
+        },
+        onFinish: () => {
+            if (onFinish) {
+                onFinish();
+            }
+        },
+    };
 }

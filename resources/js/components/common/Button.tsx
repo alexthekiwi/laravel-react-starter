@@ -27,7 +27,7 @@ export default function Button({
         'inline-flex items-center gap-3 text-sm justify-center text-center px-5 py-2 rounded transition-all hover:opacity-75';
 
     const themeClass =
-        (theme === 'primary' && 'bg-primary text-white') ||
+        (theme === 'primary' && 'bg-blue-400 text-white') ||
         (theme === 'success' && 'bg-green-400 text-white') ||
         (theme === 'info' && 'bg-blue-400 text-white') ||
         (theme === 'danger' && 'bg-red-500 text-white') ||
