@@ -49,8 +49,9 @@ php artisan serve
 
 Or run the app with Laravel Sail (in Docker containers) with:
 ```
-sail up
+sail up -d
 ```
+(Omit the "-d" to not use detached mode)
 
 Otherwise you can use [Laravel Valet](https://laravel.com/docs/9.x/valet) to run the site on a local domain, e.g. "http://myapp.test".
 
