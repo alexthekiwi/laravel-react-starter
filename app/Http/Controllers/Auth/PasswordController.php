@@ -3,11 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Validation\PasswordValidation;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rules\Password;
+use Illuminate\Validation\Rules;
 
 class PasswordController extends Controller
 {
@@ -18,7 +17,7 @@ class PasswordController extends Controller
     {
         $validated = $request->validate([
             'current_password' => ['required', 'current_password'],
-            'password' => PasswordValidation::rules(),
+            'password' => ['required', 'confirmed', Rules\Password::defaults()->min(8)->mixedCase()->letters()->numbers()->uncompromised()],
         ]);
 
         $request->user()->update([

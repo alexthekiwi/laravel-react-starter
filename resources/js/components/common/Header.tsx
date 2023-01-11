@@ -9,7 +9,9 @@ interface Props {
 }
 
 export default function Header({}: Props) {
-    const { user } = useAuth();
+    const { user, currentGroup, can } = useAuth();
+
+    const isAdmin = can('admin');
 
     return (
         <header className="flex min-h-[80px] items-center bg-gray-600 text-white">
@@ -24,7 +26,7 @@ export default function Header({}: Props) {
                                 <span className="inline-flex rounded-md">
                                     <button
                                         type="button"
-                                        className="inline-flex min-w-[120px] items-center justify-between rounded-md border border-transparent bg-white px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out hover:text-gray-700 focus:outline-none dark:bg-gray-800 dark:hover:text-gray-300"
+                                        className="inline-flex min-w-[120px] items-center justify-between rounded-md border border-transparent bg-white px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out hover:text-gray-700 focus:outline-none"
                                     >
                                         {user.name}
                                         <svg
@@ -46,6 +48,20 @@ export default function Header({}: Props) {
                                 <Dropdown.Link href={route('profile.edit')}>
                                     Profile
                                 </Dropdown.Link>
+                                {currentGroup && (
+                                    <Dropdown.Link
+                                        href={route('groups.show', {
+                                            group: currentGroup.id,
+                                        })}
+                                    >
+                                        {currentGroup.name}
+                                    </Dropdown.Link>
+                                )}
+                                <Dropdown.Link
+                                    href={route('group-switch.index')}
+                                >
+                                    Switch Group
+                                </Dropdown.Link>
                                 <Dropdown.Link
                                     href={route('logout')}
                                     method="post"
@@ -53,12 +69,24 @@ export default function Header({}: Props) {
                                 >
                                     Log Out
                                 </Dropdown.Link>
+                                {isAdmin && (
+                                    <>
+                                        <hr className="my-2" />
+                                        <Dropdown.Link href="/users">
+                                            All Users
+                                        </Dropdown.Link>
+                                        <Dropdown.Link href="/groups">
+                                            All Groups
+                                        </Dropdown.Link>
+                                    </>
+                                )}
                             </Dropdown.Content>
                         </Dropdown>
                     ) : (
                         <>
                             <Link href="/login">Login</Link>
                             <Link href="/register">Register</Link>
+                            <hr />
                         </>
                     )}
                 </nav>

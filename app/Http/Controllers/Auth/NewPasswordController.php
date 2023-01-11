@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Validation\PasswordValidation;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -13,6 +12,7 @@ use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
 use Inertia\Response;
+use Illuminate\Validation\Rules;
 
 class NewPasswordController extends Controller
 {
@@ -37,7 +37,7 @@ class NewPasswordController extends Controller
         $request->validate([
             'token' => 'required',
             'email' => 'required|email',
-            'password' => PasswordValidation::rules(),
+            'password' => ['required', 'confirmed', Rules\Password::defaults()->min(8)->mixedCase()->letters()->numbers()->uncompromised()],
         ]);
 
         // Here we will attempt to reset the user's password. If it is successful we

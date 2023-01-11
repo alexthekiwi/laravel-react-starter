@@ -33,12 +33,14 @@ class HandleInertiaRequests extends Middleware
         return array_merge(parent::share($request), [
             'auth' => [
                 'user' => $request->user(),
+                'currentGroup' => $request->user() ? $request->currentGroup : null,
             ],
             'ziggy' => function () use ($request) {
                 return array_merge((new Ziggy)->toArray(), [
                     'location' => $request->url(),
                 ]);
             },
+            'user_proxy_id' => session()->get('user_proxy_id'),
         ]);
     }
 }

@@ -22,11 +22,25 @@ class RegistrationTest extends TestCase
         $response = $this->post('/register', [
             'name' => 'Test User',
             'email' => 'test@example.com',
-            'password' => 'password',
-            'password_confirmation' => 'password',
+            'password' => 'MySuperStrongPassword0987654321',
+            'password_confirmation' => 'MySuperStrongPassword0987654321',
         ]);
 
         $this->assertAuthenticated();
         $response->assertRedirect(RouteServiceProvider::HOME);
+    }
+
+    public function test_password_strength_is_enforced_on_register(): void
+    {
+        $response = $this->post('/register', [
+            'name' => 'Test User',
+            'email' => 'test@example.com',
+            'password' => 'password',
+            'password_confirmation' => 'password',
+        ]);
+
+        $response->assertSessionHasErrors();
+
+        $this->assertDatabaseMissing('users', ['email' => 'test@example.com']);
     }
 }

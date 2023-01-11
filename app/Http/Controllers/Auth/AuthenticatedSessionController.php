@@ -19,6 +19,11 @@ class AuthenticatedSessionController extends Controller
      */
     public function create(): Response
     {
+        // If we're coming from an activation email, we need to set the session for later
+        if (request()->has('activation')) {
+            session(['activation' => true]);
+        }
+
         return Inertia::render('Auth/Login', [
             'canResetPassword' => Route::has('password.request'),
             'status' => session('status'),

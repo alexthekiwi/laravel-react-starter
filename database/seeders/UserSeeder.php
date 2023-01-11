@@ -21,6 +21,7 @@ class UserSeeder extends Seeder
                 'name' => env('DEV_USER_NAME' ?? 'Dev User'),
                 'email' => env('DEV_USER_EMAIL'),
                 'password' => bcrypt(env('DEV_USER_PASSWORD') ?? 'password'),
+                'title' => 'Developer',
             ]);
         }
 

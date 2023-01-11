@@ -20,15 +20,33 @@ class PasswordUpdateTest extends TestCase
             ->from('/profile')
             ->put('/password', [
                 'current_password' => 'password',
-                'password' => 'new-password',
-                'password_confirmation' => 'new-password',
+                'password' => 'MySuperStrongPassword0987654321',
+                'password_confirmation' => 'MySuperStrongPassword0987654321',
             ]);
 
         $response
             ->assertSessionHasNoErrors()
             ->assertRedirect('/profile');
 
-        $this->assertTrue(Hash::check('new-password', $user->refresh()->password));
+        $this->assertTrue(Hash::check('MySuperStrongPassword0987654321', $user->refresh()->password));
+    }
+
+    public function test_password_strength_is_enforced_on_update(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this
+            ->actingAs($user)
+            ->from('/profile')
+            ->put('/password', [
+                'current_password' => 'password',
+                'password' => 'new-password',
+                'password_confirmation' => 'new-password',
+            ]);
+
+        $response->assertSessionHasErrors();
+
+        $this->assertFalse(Hash::check('new-password', $user->refresh()->password));
     }
 
     public function test_correct_password_must_be_provided_to_update_password(): void
