@@ -5,7 +5,6 @@ namespace Database\Seeders;
 use App\Actions\AddUserToGroup;
 use App\Models\Group;
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 
@@ -20,7 +19,7 @@ class GroupSeeder extends Seeder
     {
         if (env('DEV_USER_EMAIL')) {
             $group = Group::query()->firstOrCreate([
-                'name' => 'Administrators',
+                'name'    => 'Administrators',
                 'role_id' => Role::findOrCreate('administrator')->id,
             ]);
 

@@ -11,9 +11,9 @@ use Illuminate\Support\Facades\DB;
 class GroupUserController extends Controller
 {
     protected $rules = [
-            'group_id' => ['required', 'exists:groups,id'],
-            'user_id' => ['required', 'exists:users,id'],
-            'is_owner' => ['nullable', 'boolean'],
+        'group_id' => ['required', 'exists:groups,id'],
+        'user_id'  => ['required', 'exists:users,id'],
+        'is_owner' => ['nullable', 'boolean'],
     ];
 
     public function store(Request $request, AddUserToGroup $addUserToGroup)

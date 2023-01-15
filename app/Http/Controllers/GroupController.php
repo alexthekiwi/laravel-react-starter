@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Actions\ChangeGroupOwners;
-use App\Actions\ChangeGroupOwnerStatus;
 use App\Models\Group;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -116,7 +115,7 @@ class GroupController extends Controller
         abort_if($request->user()->cannot('update', $group), 403);
 
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
+            'name'    => ['required', 'string', 'max:255'],
             'role_id' => ['nullable', 'integer', 'exists:roles,id'],
         ]);
 

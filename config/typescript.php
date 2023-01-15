@@ -4,11 +4,11 @@ use Based\TypeScript\Generators\ModelGenerator;
 use Illuminate\Database\Eloquent\Model;
 
 return [
-    'generators' => [
+    'generators'  => [
         Model::class => ModelGenerator::class,
     ],
 
-    'paths' => [
+    'paths'       => [
         //
     ],
 
@@ -17,7 +17,7 @@ return [
         // \App\Rules\MyOtherCustomRule::class => ['string', 'number'],
     ],
 
-    'output' => resource_path('js/types/models.d.ts'),
+    'output'      => resource_path('js/types/models.d.ts'),
 
     'autoloadDev' => false,
 ];

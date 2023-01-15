@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class UserSeeder extends Seeder
@@ -18,10 +17,10 @@ class UserSeeder extends Seeder
         // Make a dev user if specified in `.env`
         if (env('DEV_USER_EMAIL')) {
             User::factory()->create([
-                'name' => env('DEV_USER_NAME' ?? 'Dev User'),
-                'email' => env('DEV_USER_EMAIL'),
+                'name'     => env('DEV_USER_NAME' ?? 'Dev User'),
+                'email'    => env('DEV_USER_EMAIL'),
                 'password' => bcrypt(env('DEV_USER_PASSWORD') ?? 'password'),
-                'title' => 'Developer',
+                'title'    => 'Developer',
             ]);
         }
 

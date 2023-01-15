@@ -8,9 +8,9 @@ use App\Actions\IsOwner;
 use App\Models\Group;
 use App\Models\User;
 use App\Notifications\EmailActivation;
-use Illuminate\Validation\Rules;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules;
 use Illuminate\Validation\ValidationException;
 
 class UserController extends Controller
@@ -64,21 +64,21 @@ class UserController extends Controller
         abort_if(! $request->currentGroup->is_owner, 403);
 
         $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:'.User::class,
-            'title' => 'nullable|string|max:255',
-            'password' => ['nullable', Rules\Password::defaults()->min(8)->mixedCase()->letters()->numbers()->uncompromised()],
-            'group_ids' => 'nullable|array',
+            'name'        => 'required|string|max:255',
+            'email'       => 'required|string|email|max:255|unique:'.User::class,
+            'title'       => 'nullable|string|max:255',
+            'password'    => ['nullable', Rules\Password::defaults()->min(8)->mixedCase()->letters()->numbers()->uncompromised()],
+            'group_ids'   => 'nullable|array',
             'group_ids.*' => 'nullable|integer|exists:groups,id',
         ]);
 
         // Generate a password if one wasn't provided
-        $password = $request->password ?: (new GeneratePassword())();
+        $password = $request->password ?: (new GeneratePassword)();
 
         // Create the user
         $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
+            'name'     => $request->name,
+            'email'    => $request->email,
             'password' => Hash::make($password),
         ]);
 
@@ -131,8 +131,8 @@ class UserController extends Controller
         $user->load('groups');
 
         return inertia('Users/Edit', [
-            'user' => $user,
-            'groups' => $this->getGroups(),
+            'user'             => $user,
+            'groups'           => $this->getGroups(),
             'userIsGroupOwner' => $userIsGroupOwner,
         ]);
     }
@@ -149,11 +149,11 @@ class UserController extends Controller
         abort_if($request->user()->cannot('update', $user), 403);
 
         $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255',
-            'title' => 'nullable|string|max:255',
-            'password' => ['nullable', Rules\Password::defaults()->min(8)->mixedCase()->letters()->numbers()->uncompromised()],
-            'group_ids' => 'nullable|array',
+            'name'        => 'required|string|max:255',
+            'email'       => 'required|string|email|max:255',
+            'title'       => 'nullable|string|max:255',
+            'password'    => ['nullable', Rules\Password::defaults()->min(8)->mixedCase()->letters()->numbers()->uncompromised()],
+            'group_ids'   => 'nullable|array',
             'group_ids.*' => 'nullable|integer|exists:groups,id',
         ]);
 

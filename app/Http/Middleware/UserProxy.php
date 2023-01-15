@@ -18,14 +18,14 @@ class UserProxy
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!$request->user()) {
+        if (! $request->user()) {
             return $next($request);
         }
 
         if ($request->user()->can('user-proxy')) {
             $id = $request->session()->get('user_proxy_id');
 
-            if (!$id) {
+            if (! $id) {
                 return $next($request);
             }
 

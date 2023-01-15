@@ -6,7 +6,6 @@ use App\Actions\AddUserToGroup;
 use App\Models\Group;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Tests\TestCase;
@@ -25,7 +24,7 @@ class GroupTest extends TestCase
 
         $res = $this->post('group-user', [
             'group_id' => $group->id,
-            'user_id' => $user->id,
+            'user_id'  => $user->id,
         ]);
 
         $res->assertSessionHasNoErrors();
@@ -33,7 +32,7 @@ class GroupTest extends TestCase
 
         $this->assertDatabaseHas('group_user', [
             'group_id' => $group->id,
-            'user_id' => $user->id,
+            'user_id'  => $user->id,
             'is_owner' => false,
         ]);
     }
@@ -57,7 +56,7 @@ class GroupTest extends TestCase
 
         $res = $this->post('group-user', [
             'group_id' => $group->id,
-            'user_id' => $user->id,
+            'user_id'  => $user->id,
             'is_owner' => 1,
         ]);
 
@@ -68,7 +67,7 @@ class GroupTest extends TestCase
 
         $this->assertDatabaseHas('group_user', [
             'group_id' => $group->id,
-            'user_id' => $user->id,
+            'user_id'  => $user->id,
             'is_owner' => true,
         ]);
 
@@ -94,7 +93,7 @@ class GroupTest extends TestCase
         // Post to group-user
         $res = $this->actingAs($adminUser)->post('group-user', [
             'group_id' => Group::where('role_id', Role::findByName('administrator')->id)->first()->id,
-            'user_id' => $user->id,
+            'user_id'  => $user->id,
             'is_owner' => 1,
         ]);
 
@@ -119,7 +118,7 @@ class GroupTest extends TestCase
         // Post to group-user
         $res = $this->actingAs($adminUser)->post('group-user', [
             'group_id' => $group->id,
-            'user_id' => $user->id,
+            'user_id'  => $user->id,
             'is_owner' => 1,
         ]);
 
@@ -144,7 +143,7 @@ class GroupTest extends TestCase
         // Post to group-user
         $res = $this->actingAs($adminUser)->post('group-user', [
             'group_id' => $group->id,
-            'user_id' => $user->id,
+            'user_id'  => $user->id,
             'is_owner' => 1,
         ]);
 
@@ -160,7 +159,7 @@ class GroupTest extends TestCase
 
         $this->assertDatabaseHas('group_user', [
             'group_id' => $group->id,
-            'user_id' => $user->id,
+            'user_id'  => $user->id,
             'is_owner' => true,
         ]);
     }
