@@ -14,21 +14,27 @@ return [
     |
     */
 
-    'mailgun'  => [
+    'mailgun'     => [
         'domain'   => env('MAILGUN_DOMAIN'),
         'secret'   => env('MAILGUN_SECRET'),
         'endpoint' => env('MAILGUN_ENDPOINT', 'api.mailgun.net'),
         'scheme'   => 'https',
     ],
 
-    'postmark' => [
+    'postmark'    => [
         'token' => env('POSTMARK_TOKEN'),
     ],
 
-    'ses'      => [
+    'ses'         => [
         'key'    => env('AWS_ACCESS_KEY_ID'),
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
+    ],
+
+    'browsershot' => [
+        'node_binary'       => env('NODE_BINARY', '/usr/bin/node'),
+        'npm_binary'        => env('NPM_BINARY', '/usr/bin/npm'),
+        'node_modules_path' => env('NODE_MODULES_PATH', '/usr/lib/node_modules'),
     ],
 
 ];

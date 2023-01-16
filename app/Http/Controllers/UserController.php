@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Actions\AddUserToGroup;
-use App\Actions\GeneratePassword;
-use App\Actions\IsOwner;
+use App\Actions\Auth\AddUserToGroup;
+use App\Actions\Auth\GeneratePassword;
+use App\Actions\Auth\IsOwner;
 use App\Models\Group;
 use App\Models\User;
 use App\Notifications\EmailActivation;

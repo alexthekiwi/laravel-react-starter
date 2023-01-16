@@ -15,6 +15,16 @@ Route::get('/', HomeController::class)->name('home');
 
 Route::get('/dashboard', DashboardController::class)->middleware(['auth', 'verified'])->name('dashboard');
 
+// TODO: Delete this route, this is just an example of PDF generation
+Route::get('/pdf', function () {
+    $browsershot = (new \App\Actions\GeneratePdf)(view('pdf.sample')->render());
+
+    return response($browsershot->pdf(), 200, [
+        'Content-Type'        => 'application/pdf',
+        'Content-Disposition' => 'inline; filename="sample.pdf"',
+    ]);
+});
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Actions\ChangeGroupOwners;
+use App\Actions\Auth\ChangeGroupOwners;
 use App\Models\Group;
 use App\Models\User;
 use Illuminate\Http\Request;

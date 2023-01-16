@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Actions;
+namespace App\Actions\Auth;
 
 class GeneratePassword
 {
@@ -9,16 +9,15 @@ class GeneratePassword
         $str = substr(str_shuffle(str_repeat($x = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()_+-=', ceil(12 / strlen($x)))), 1, 20);
 
         // Ensure it has numbers
-        while(! preg_match('/[0-9]/', $str)) {
+        while (! preg_match('/[0-9]/', $str)) {
             $str = substr(str_shuffle(str_repeat($x = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()_+-=', ceil(12 / strlen($x)))), 1, 20);
         }
 
         // Ensure it has letters
-        while(! preg_match('/[a-zA-Z]/', $str)) {
+        while (! preg_match('/[a-zA-Z]/', $str)) {
             $str = substr(str_shuffle(str_repeat($x = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()_+-=', ceil(12 / strlen($x)))), 1, 20);
         }
 
         return $str;
-
     }
 }

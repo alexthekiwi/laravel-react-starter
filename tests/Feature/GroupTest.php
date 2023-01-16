@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Actions\AddUserToGroup;
+use App\Actions\Auth\AddUserToGroup;
 use App\Models\Group;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
