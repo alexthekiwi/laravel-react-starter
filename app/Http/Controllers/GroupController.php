@@ -41,9 +41,13 @@ class GroupController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        abort_if($request->user()->cannot('create', Group::class), 403);
+
+        return inertia('Groups/Create', [
+            'roles' => Role::all(),
+        ]);
     }
 
     /**
@@ -54,7 +58,16 @@ class GroupController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        abort_if($request->user()->cannot('create', Group::class), 403);
+
+        $fields = $request->validate([
+            'name'    => ['required', 'string', 'max:255', 'unique:groups,name'],
+            'role_id' => ['required', 'exists:roles,id'],
+        ]);
+
+        $group = Group::create($fields);
+
+        return redirect()->route('groups.show', $group);
     }
 
     /**

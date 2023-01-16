@@ -76,7 +76,7 @@ export default function GroupForm({ group, roles }: Props) {
 
                     {isAdmin && (
                         <label>
-                            Group
+                            Role
                             <select
                                 name="role_id"
                                 id="role_id"
@@ -85,6 +85,7 @@ export default function GroupForm({ group, roles }: Props) {
                                     handleChange({ event, data, setData })
                                 }
                             >
+                                <option value="">Select role</option>
                                 {roles?.map((role) => (
                                     <option key={role.id} value={role.id}>
                                         {upperFirst(role.name)}
