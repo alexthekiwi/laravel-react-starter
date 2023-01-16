@@ -7,9 +7,10 @@ import { useAuth } from '@/lib/auth';
 interface Props {
     user?: App.Models.User;
     groups?: App.Models.Group[];
+    groupId?: number;
 }
 
-export default function UserForm({ user, groups }: Props) {
+export default function UserForm({ user, groups, groupId }: Props) {
     const { can } = useAuth();
 
     const isAdmin = can('admin');
@@ -20,7 +21,8 @@ export default function UserForm({ user, groups }: Props) {
         title: user?.title || '',
         password: '',
         password_confirmation: '',
-        group_ids: user?.groups?.map((g) => g.id) || [],
+        group_ids:
+            (groupId && [groupId]) || user?.groups?.map((g) => g.id) || [],
     });
 
     const onSubmit = useSubmit({ message: 'User saved!' });

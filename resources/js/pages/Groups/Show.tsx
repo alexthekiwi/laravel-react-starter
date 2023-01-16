@@ -70,7 +70,9 @@ export default function GroupsShow({ group, users }: Props) {
                             {isAdmin && (
                                 <Button href="/groups">View all groups</Button>
                             )}
-                            <Button href="/users/create">Create user</Button>
+                            <Button href={`/users/create?groupId=${group.id}`}>
+                                Create user
+                            </Button>
                             <Button href={`/groups/${group.id}/edit`}>
                                 Edit group
                             </Button>

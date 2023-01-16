@@ -7,9 +7,10 @@ import Card from '@/components/common/Card';
 
 interface Props {
     groups?: App.Models.Group[];
+    groupId?: number;
 }
 
-export default function UsersCreate({ groups }: Props) {
+export default function UsersCreate({ groups, groupId }: Props) {
     const { currentGroup } = useAuth();
 
     return (
@@ -30,7 +31,7 @@ export default function UsersCreate({ groups }: Props) {
                 </div>
 
                 <Card className="mx-auto w-full max-w-xl">
-                    <UserForm groups={groups} />
+                    <UserForm groups={groups} groupId={groupId} />
                 </Card>
             </div>
         </Layout>

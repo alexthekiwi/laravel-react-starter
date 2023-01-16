@@ -49,7 +49,8 @@ class UserController extends Controller
         abort_if(! $request->currentGroup->is_owner, 403);
 
         return inertia('Users/Create', [
-            'groups' => $this->getGroups(),
+            'groups'  => $this->getGroups(),
+            'groupId' => $request->groupId ? (int) $request->groupId : null,
         ]);
     }
 
