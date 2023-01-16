@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Actions\AddUserToGroup;
-use App\Actions\GeneratePassword;
-use App\Actions\IsOwner;
+use App\Actions\Auth\AddUserToGroup;
+use App\Actions\Auth\GeneratePassword;
+use App\Actions\Auth\IsOwner;
 use App\Models\Group;
 use App\Models\User;
 use App\Notifications\EmailActivation;
@@ -49,7 +49,8 @@ class UserController extends Controller
         abort_if(! $request->currentGroup->is_owner, 403);
 
         return inertia('Users/Create', [
-            'groups' => $this->getGroups(),
+            'groups'  => $this->getGroups(),
+            'groupId' => $request->groupId ? (int) $request->groupId : null,
         ]);
     }
 

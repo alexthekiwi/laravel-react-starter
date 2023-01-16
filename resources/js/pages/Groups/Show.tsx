@@ -19,9 +19,21 @@ export default function GroupsShow({ group, users }: Props) {
 
     const isAdmin = can('admin');
 
+    const onProxy = useSubmit({
+        message: 'You are now impersonating another user.',
+    });
+
     const onDelete = useSubmit({
         message: 'User deleted successfully.',
     });
+
+    function handleUserProxy(id: number) {
+        if (!isAdmin) {
+            return;
+        }
+
+        Inertia.post('/user-proxy', { user_id: id }, onProxy);
+    }
 
     function handleRemoveUser(user: App.Models.User) {
         if (
@@ -58,7 +70,9 @@ export default function GroupsShow({ group, users }: Props) {
                             {isAdmin && (
                                 <Button href="/groups">View all groups</Button>
                             )}
-                            <Button href="/users/create">Create user</Button>
+                            <Button href={`/users/create?groupId=${group.id}`}>
+                                Create user
+                            </Button>
                             <Button href={`/groups/${group.id}/edit`}>
                                 Edit group
                             </Button>
@@ -138,6 +152,20 @@ export default function GroupsShow({ group, users }: Props) {
                                                             , {user.name}
                                                         </span>
                                                     </Link>
+
+                                                    {isAdmin && (
+                                                        <button
+                                                            type="button"
+                                                            onClick={() =>
+                                                                handleUserProxy(
+                                                                    user.id
+                                                                )
+                                                            }
+                                                            className="text-blue-400"
+                                                        >
+                                                            Impersonate
+                                                        </button>
+                                                    )}
 
                                                     <button
                                                         type="button"

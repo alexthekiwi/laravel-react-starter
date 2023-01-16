@@ -41,6 +41,23 @@ php artisan migrate
 
 ---
 
+### PDF generation with Puppeteer and Browsershot
+If you're wanting to generate PDFs with Browsershot, you'll need to do the following.
+
+Install puppeteer as a global node_module:
+```
+npm i --location=global puppeteer
+```
+
+Run the following to get the corresponding variables for your `.env` file:
+```
+which node   # NODE_BINARY
+which npm    # NPM_BINARY
+npm list -g  # NODE_MODULES_PATH (add "/node_modules" to the result)
+```
+
+---
+
 ## Development
 To start a dev server with Hot-Module-Reloading (HMR) for your TypeScript files:
 ```
