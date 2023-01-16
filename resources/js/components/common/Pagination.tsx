@@ -47,13 +47,7 @@ export default function Pagination({
     React.useEffect(() => {
         if (typeof window !== 'undefined') {
             const search = new URLSearchParams(window.location.search);
-
-            const newData: {
-                sort?: string;
-                limit?: string;
-                page?: string;
-                search?: string;
-            } = {};
+            const newData: Partial<typeof data> = {} as const;
 
             if (search.has('sort')) {
                 newData.sort = search.get('sort') as string;
@@ -71,8 +65,7 @@ export default function Pagination({
                 newData.search = search.get('search') as string;
             }
 
-            // @ts-ignore TODO: Fix this
-            setData(newData);
+            setData((current) => ({ ...current, ...newData }));
         }
     }, []);
 
