@@ -208,7 +208,7 @@ class UserController extends Controller
     public function getGroups()
     {
         // Attach all groups if the authenticated user is an admin
-        return auth()->user()->can('admin')
+        return request()->user()->can('admin')
             ? Group::query()
                 ->select(['id', 'name', 'role_id'])
                 ->with('role')
