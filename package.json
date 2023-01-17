@@ -17,6 +17,7 @@
         "@inertiajs/server": "^0.1.0",
         "axios": "^1.1.2",
         "date-fns": "^2.29.3",
+        "eslint-plugin-react-hooks-static-deps": "^1.0.7",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "uuid": "^9.0.0",

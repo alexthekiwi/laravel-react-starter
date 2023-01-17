@@ -17,7 +17,7 @@ class GroupController extends Controller
      */
     public function index(Request $request)
     {
-        abort_if($request->user()->cannot('admin'), 403);
+        $this->authorize('admin');
 
         $sortParts = explode('_', $request->input('sort') ?? 'name_asc');
         $sort = $sortParts[0];
@@ -43,7 +43,7 @@ class GroupController extends Controller
      */
     public function create(Request $request)
     {
-        abort_if($request->user()->cannot('create', Group::class), 403);
+        $this->authorize('create', Group::class);
 
         return inertia('Groups/Create', [
             'roles' => Role::all(),
@@ -58,7 +58,7 @@ class GroupController extends Controller
      */
     public function store(Request $request)
     {
-        abort_if($request->user()->cannot('create', Group::class), 403);
+        $this->authorize('create', Group::class);
 
         $fields = $request->validate([
             'name'    => ['required', 'string', 'max:255', 'unique:groups,name'],
@@ -78,7 +78,7 @@ class GroupController extends Controller
      */
     public function show(Request $request, Group $group)
     {
-        abort_if(auth()->user()->cannot('view', $group), 403);
+        $this->authorize('view', $group);
 
         $sortParts = explode('_', $request->input('sort') ?? 'name_asc');
         $sort = $sortParts[0];
@@ -105,7 +105,7 @@ class GroupController extends Controller
      */
     public function edit(Group $group)
     {
-        abort_if(auth()->user()->cannot('update', $group), 403);
+        $this->authorize('update', $group);
 
         $group->load('users');
         $group->load('owners');
@@ -125,7 +125,7 @@ class GroupController extends Controller
      */
     public function update(Request $request, Group $group, ChangeGroupOwners $changeGroupOwners)
     {
-        abort_if($request->user()->cannot('update', $group), 403);
+        $this->authorize('update', $group);
 
         $request->validate([
             'name'    => ['required', 'string', 'max:255'],
@@ -168,7 +168,7 @@ class GroupController extends Controller
      */
     public function destroy(Group $group, Request $request)
     {
-        abort_if($request->user()->cannot('delete', $group), 403);
+        $this->authorize('delete', $group);
 
         if ($request->has('withUsers')) {
             $group->users()->get()->each(function (User $user) {

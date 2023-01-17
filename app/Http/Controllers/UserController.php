@@ -22,7 +22,7 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        abort_if($request->user()->cannot('admin'), 403);
+        $this->authorize('admin');
 
         $sortParts = explode('_', $request->input('sort') ?? 'name_asc');
         $sort = $sortParts[0];
@@ -46,7 +46,7 @@ class UserController extends Controller
      */
     public function create(Request $request)
     {
-        abort_if(! $request->currentGroup->is_owner, 403);
+        $this->authorize('create', User::class);
 
         return inertia('Users/Create', [
             'groups'  => $this->getGroups(),
@@ -62,7 +62,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        abort_if(! $request->currentGroup->is_owner, 403);
+        $this->authorize('create', User::class);
 
         $request->validate([
             'name'        => 'required|string|max:255',
@@ -112,7 +112,7 @@ class UserController extends Controller
      */
     public function show(Request $request, User $user)
     {
-        abort_if(! $request->currentGroup->is_owner, 403);
+        $this->authorize('view', $user);
 
         return redirect()->route('users.edit', $user);
     }
@@ -125,7 +125,7 @@ class UserController extends Controller
      */
     public function edit(Request $request, User $user, IsOwner $isOwner)
     {
-        abort_if($request->user()->cannot('update', $user), 403);
+        $this->authorize('update', $user);
 
         $userIsGroupOwner = $isOwner($user, $request->currentGroup);
 
@@ -147,7 +147,7 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        abort_if($request->user()->cannot('update', $user), 403);
+        $this->authorize('update', $user);
 
         $request->validate([
             'name'        => 'required|string|max:255',
@@ -198,7 +198,7 @@ class UserController extends Controller
      */
     public function destroy(Request $request, User $user)
     {
-        abort_if($request->user()->cannot('delete', $user), 403);
+        $this->authorize('delete', $user);
 
         $user->delete();
 
@@ -208,7 +208,7 @@ class UserController extends Controller
     public function getGroups()
     {
         // Attach all groups if the authenticated user is an admin
-        return auth()->user()->can('admin')
+        return request()->user()->can('admin')
             ? Group::query()
                 ->select(['id', 'name', 'role_id'])
                 ->with('role')
