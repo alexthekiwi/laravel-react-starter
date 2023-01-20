@@ -1,4 +1,4 @@
-import { Link } from '@inertiajs/inertia-react';
+import { Link } from '@inertiajs/react';
 import route from 'ziggy-js';
 import { useAuth } from '@/lib/auth';
 import Dropdown from '@/components/common/Dropdown';
@@ -64,7 +64,7 @@ export default function Header({}: Props) {
                                 </Dropdown.Link>
                                 <Dropdown.Link
                                     href={route('logout')}
-                                    method="post"
+                                    method="POST"
                                     as="button"
                                 >
                                     Log Out

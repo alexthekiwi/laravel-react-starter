@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { useForm } from '@inertiajs/inertia-react';
+import { useForm } from '@inertiajs/react';
 import route from 'ziggy-js';
 import Modal from '@/components/common/Modal';
 import Button from '@/components/common/Button';

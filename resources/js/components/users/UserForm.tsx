@@ -1,4 +1,4 @@
-import { useForm } from '@inertiajs/inertia-react';
+import { useForm } from '@inertiajs/react';
 import React from 'react';
 import { handleChange, useSubmit } from '@/lib/forms';
 import Button from '../common/Button';

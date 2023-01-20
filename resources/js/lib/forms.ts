@@ -1,5 +1,4 @@
 import React from 'react';
-import { VisitOptions } from '@inertiajs/inertia';
 import { useToast } from './toast';
 
 interface Props {
@@ -39,7 +38,7 @@ export function useSubmit({
     onError,
     onFinish,
     preserveScroll = false,
-}: UseSubmitOptions = {}): VisitOptions {
+}: UseSubmitOptions = {}): any {
     const { addToast } = useToast();
 
     return {
@@ -54,7 +53,7 @@ export function useSubmit({
                 onSuccess();
             }
         },
-        onError: (errors) => {
+        onError: (errors: Error) => {
             Object.values(errors).forEach((err) => {
                 addToast({
                     message: err,

@@ -1,5 +1,4 @@
-import { Inertia } from '@inertiajs/inertia';
-import { usePage } from '@inertiajs/inertia-react';
+import { router, usePage } from '@inertiajs/react';
 import { useSubmit } from '@/lib/forms';
 
 export default function UserImpersonationBar() {
@@ -10,7 +9,7 @@ export default function UserImpersonationBar() {
     });
 
     function handleCancelUserProxy() {
-        Inertia.delete('/user-proxy', onCancel);
+        router.delete('/user-proxy', onCancel);
     }
 
     if (!userProxyId) {

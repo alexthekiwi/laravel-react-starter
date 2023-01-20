@@ -1,4 +1,4 @@
-import { Link } from '@inertiajs/inertia-react';
+import { Link } from '@inertiajs/react';
 import React, { PropsWithChildren } from 'react';
 
 interface Props extends PropsWithChildren {

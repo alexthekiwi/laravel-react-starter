@@ -1,4 +1,4 @@
-import { Head } from '@inertiajs/inertia-react';
+import { Head } from '@inertiajs/react';
 import Layout from '@/layouts/Layout';
 import UserForm from '@/components/users/UserForm';
 import { useAuth } from '@/lib/auth';

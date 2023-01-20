@@ -1,4 +1,4 @@
-import { Head } from '@inertiajs/inertia-react';
+import { Head } from '@inertiajs/react';
 import Layout from '@/layouts/Layout';
 import type { Role } from '@/types';
 import GroupForm from '@/components/users/GroupForm';

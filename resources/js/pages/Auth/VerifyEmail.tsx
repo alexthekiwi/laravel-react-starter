@@ -1,4 +1,5 @@
-import { Head, Link, useForm } from '@inertiajs/inertia-react';
+import { Head, Link, useForm } from '@inertiajs/react';
+import { Method } from '@inertiajs/core';
 import React from 'react';
 import route from 'ziggy-js';
 import Card from '@/components/common/Card';
@@ -47,7 +48,7 @@ export default function VerifyEmail({ status }: Props) {
                             </Button>
                             <Link
                                 href={route('logout')}
-                                method="post"
+                                method={Method.POST}
                                 as="button"
                                 className="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                             >

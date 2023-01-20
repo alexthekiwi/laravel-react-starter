@@ -1,6 +1,5 @@
-import { Head, Link } from '@inertiajs/inertia-react';
+import { router, Head, Link } from '@inertiajs/react';
 import route from 'ziggy-js';
-import { Inertia } from '@inertiajs/inertia';
 import Layout from '@/layouts/Layout';
 import Button from '@/components/common/Button';
 import { PaginatedResults } from '@/types';
@@ -31,7 +30,7 @@ export default function UsersIndex({ users }: Props) {
             return;
         }
 
-        Inertia.post('/user-proxy', { user_id: id }, onProxy);
+        router.post('/user-proxy', { user_id: id }, onProxy);
     }
 
     function handleDeleteUser(user: App.Models.User) {
@@ -39,7 +38,7 @@ export default function UsersIndex({ users }: Props) {
             return;
         }
 
-        Inertia.delete(`/users/${user.id}`, onDelete);
+        router.delete(`/users/${user.id}`, onDelete);
     }
 
     return (

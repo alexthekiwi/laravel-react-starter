@@ -18,7 +18,7 @@ class AddGroupToRequest
     {
         if (($user = $request->user()) && $group = $user->group()) {
             // Surface the "is_owner" attribute on the group
-            $group->setAttribute('is_owner', (bool) $group->pivot->is_owner);
+            $group->setAttribute('is_owner', (bool) $group->getRelationValue('pivot')->is_owner);
 
             $request->merge([
                 'currentGroup' => $group,

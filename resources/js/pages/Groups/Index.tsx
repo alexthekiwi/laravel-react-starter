@@ -1,7 +1,6 @@
-import { Head, Link } from '@inertiajs/inertia-react';
 import { upperFirst } from 'lodash';
 import route from 'ziggy-js';
-import { Inertia } from '@inertiajs/inertia';
+import { router, Head, Link } from '@inertiajs/react';
 import Layout from '@/layouts/Layout';
 import Button from '@/components/common/Button';
 import { PaginatedResults } from '@/types';
@@ -28,11 +27,11 @@ export default function GroupsIndex({ groups }: Props) {
         );
 
         if (willDeleteUsers) {
-            Inertia.delete(`/groups/${group.id}?withUsers`, onDelete);
+            router.delete(`/groups/${group.id}?withUsers`, onDelete);
             return;
         }
 
-        Inertia.delete(`/groups/${group.id}`, onDelete);
+        router.delete(`/groups/${group.id}`, onDelete);
     }
 
     return (
