@@ -1,4 +1,4 @@
-import { Head, useForm } from '@inertiajs/inertia-react';
+import { Head, useForm } from '@inertiajs/react';
 import { useEffect } from 'react';
 import route from 'ziggy-js';
 import Button from '@/components/common/Button';

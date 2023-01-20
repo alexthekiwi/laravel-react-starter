@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Head, useForm } from '@inertiajs/inertia-react';
+import { Head, useForm } from '@inertiajs/react';
 import route from 'ziggy-js';
 import Layout from '@/layouts/Layout';
 import Button from '@/components/common/Button';

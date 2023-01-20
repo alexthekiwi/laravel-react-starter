@@ -10,7 +10,7 @@
         "coconutcraig/laravel-postmark": "^3.0",
         "doctrine/dbal": "^3.5",
         "guzzlehttp/guzzle": "^7.2",
-        "inertiajs/inertia-laravel": "^0.6.3",
+        "inertiajs/inertia-laravel": "^0.6.9",
         "laravel/framework": "^9.19",
         "laravel/horizon": "^5.11",
         "laravel/sanctum": "^2.8",
@@ -31,6 +31,7 @@
         "laravel/sail": "^1.0.1",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^6.1",
+        "nunomaduro/larastan": "^2.0",
         "phpunit/phpunit": "^9.5.10",
         "spatie/laravel-ignition": "^1.0"
     },

@@ -1,6 +1,5 @@
-import { Inertia } from '@inertiajs/inertia';
-import { useForm } from '@inertiajs/inertia-react';
 import React from 'react';
+import { router, useForm } from '@inertiajs/react';
 import { PaginatedResults } from '@/types';
 import Button from './Button';
 
@@ -72,7 +71,7 @@ export default function Pagination({
     function handleSortChange(e: React.SyntheticEvent<HTMLSelectElement>) {
         setData('sort', e.currentTarget.value);
 
-        Inertia.get(window.location.pathname, {
+        router.get(window.location.pathname, {
             limit: data.limit,
             sort: e.currentTarget.value,
             search: data.search,
@@ -82,7 +81,7 @@ export default function Pagination({
     function handleLimitChange(e: React.SyntheticEvent<HTMLSelectElement>) {
         setData('limit', e.currentTarget.value);
 
-        Inertia.get(window.location.pathname, {
+        router.get(window.location.pathname, {
             limit: e.currentTarget.value,
             sort: data.sort,
             search: data.search,

@@ -13,10 +13,7 @@
     },
     "dependencies": {
         "@headlessui/react": "^1.4.2",
-        "@inertiajs/inertia": "^0.11.0",
-        "@inertiajs/inertia-react": "^0.8.1",
-        "@inertiajs/progress": "^0.2.6",
-        "@inertiajs/server": "^0.1.0",
+        "@inertiajs/react": "^1.0.0",
         "axios": "^1.1.2",
         "date-fns": "^2.29.3",
         "eslint-plugin-react-hooks-static-deps": "^1.0.7",

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -34,6 +35,7 @@ use Spatie\Permission\Traits\HasRoles;
  * @property-read int|null $roles_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Sanctum\PersonalAccessToken[] $tokens
  * @property-read int|null $tokens_count
+ *
  * @method static \Database\Factories\UserFactory factory(...$parameters)
  * @method static Builder|User newModelQuery()
  * @method static Builder|User newQuery()
@@ -50,6 +52,7 @@ use Spatie\Permission\Traits\HasRoles;
  * @method static Builder|User whereRememberToken($value)
  * @method static Builder|User whereTitle($value)
  * @method static Builder|User whereUpdatedAt($value)
+ *
  * @mixin \Eloquent
  */
 class User extends Authenticatable implements MustVerifyEmail
@@ -75,17 +78,17 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
-    public function groups()
+    public function groups(): BelongsToMany
     {
         return $this->belongsToMany(Group::class, 'group_user', 'user_id', 'group_id');
     }
 
-    public function ownedGroups()
+    public function ownedGroups(): BelongsToMany
     {
         return $this->belongsToMany(Group::class, 'group_user', 'user_id', 'group_id')->wherePivot('is_owner', true);
     }
 
-    public function group()
+    public function group(): Group|null
     {
         if ($groupId = session('current_group_id')) {
             $group = $this->groups()
@@ -99,7 +102,11 @@ class User extends Authenticatable implements MustVerifyEmail
             }
         }
 
-        return $this->groups()->with(['role', 'role.permissions'])->withPivot('is_owner')->first();
+        if ($onlyGroup = $this->groups()->with(['role', 'role.permissions'])->withPivot('is_owner')->first()) {
+            return $onlyGroup;
+        }
+
+        return null;
     }
 
     public function scopeSearch(Builder $query, string $search)

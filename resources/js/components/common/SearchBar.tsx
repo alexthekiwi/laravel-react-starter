@@ -1,6 +1,5 @@
-import { Inertia } from '@inertiajs/inertia';
-import { useForm } from '@inertiajs/inertia-react';
 import React from 'react';
+import { router, useForm } from '@inertiajs/react';
 import { handleChange } from '@/lib/forms';
 
 interface Props {
@@ -39,11 +38,11 @@ export default function SearchBar({
             return;
         }
 
-        Inertia.get(path, { search: data.search });
+        router.get(path, { search: data.search });
     }
 
     function clearSearch() {
-        Inertia.get(path);
+        router.get(path);
     }
 
     return (

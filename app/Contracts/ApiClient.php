@@ -3,9 +3,7 @@
 namespace App\Contracts;
 
 /**
- * @property private string $apiUrl;
- * @property private Illuminate\Http\Client\PendingRequest $client;
- * @property private string $apiToken;
+ * A generic API client interface.
  */
 interface ApiClient
 {

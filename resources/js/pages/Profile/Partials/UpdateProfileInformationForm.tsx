@@ -1,5 +1,5 @@
-import { Link, useForm } from '@inertiajs/inertia-react';
-import { Transition } from '@headlessui/react';
+import { Link, useForm } from '@inertiajs/react';
+import { Method } from '@inertiajs/core';
 import route from 'ziggy-js';
 import React from 'react';
 import { useAuth } from '@/lib/auth';
@@ -86,7 +86,7 @@ export default function UpdateProfileInformation({
                             Your email address is unverified.&nbsp;
                             <Link
                                 href={route('verification.send')}
-                                method="post"
+                                method={Method.POST}
                                 as="button"
                                 className="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                             >

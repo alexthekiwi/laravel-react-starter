@@ -1,6 +1,5 @@
-import { Head, Link } from '@inertiajs/inertia-react';
+import { router, Head, Link } from '@inertiajs/react';
 import route from 'ziggy-js';
-import { Inertia } from '@inertiajs/inertia';
 import Layout from '@/layouts/Layout';
 import { useAuth } from '@/lib/auth';
 import Button from '@/components/common/Button';
@@ -32,7 +31,7 @@ export default function GroupsShow({ group, users }: Props) {
             return;
         }
 
-        Inertia.post('/user-proxy', { user_id: id }, onProxy);
+        router.post('/user-proxy', { user_id: id }, onProxy);
     }
 
     function handleRemoveUser(user: App.Models.User) {
@@ -44,7 +43,7 @@ export default function GroupsShow({ group, users }: Props) {
             return;
         }
 
-        Inertia.delete(`/group-user/${group.id}/${user.id}`, onDelete);
+        router.delete(`/group-user/${group.id}/${user.id}`, onDelete);
     }
 
     function handleDeleteUser(user: App.Models.User) {
@@ -52,7 +51,7 @@ export default function GroupsShow({ group, users }: Props) {
             return;
         }
 
-        Inertia.delete(`/users/${user.id}`, onDelete);
+        router.delete(`/users/${user.id}`, onDelete);
     }
 
     return (

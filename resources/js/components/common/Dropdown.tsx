@@ -5,7 +5,8 @@ import {
     Fragment,
     PropsWithChildren,
 } from 'react';
-import { Link } from '@inertiajs/inertia-react';
+import { Link } from '@inertiajs/react';
+import { Method as TMethod } from '@inertiajs/core';
 import { Transition } from '@headlessui/react';
 
 const DropDownContext = createContext<{
@@ -108,13 +109,13 @@ function DropdownLink({
     children,
 }: PropsWithChildren<{
     href: string;
-    method?: 'get' | 'post' | 'put' | 'patch' | 'delete';
+    method?: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
     as?: string;
 }>) {
     return (
         <Link
             href={href}
-            method={method}
+            method={method ? TMethod[method] : undefined}
             as={as}
             className="block w-full px-4 py-2 text-left text-sm leading-5 text-gray-700 transition duration-150 ease-in-out hover:bg-gray-100 focus:bg-gray-100 focus:outline-none"
         >

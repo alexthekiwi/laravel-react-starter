@@ -1,4 +1,4 @@
-import { Head, useForm } from '@inertiajs/inertia-react';
+import { Head, useForm } from '@inertiajs/react';
 import route from 'ziggy-js';
 import React from 'react';
 import Layout from '@/layouts/Layout';
