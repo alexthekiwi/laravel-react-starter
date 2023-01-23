@@ -185,6 +185,7 @@ export default function UserForm({ user, groups, groupId }: Props) {
                                     <p>{group.name}</p>
                                     <button
                                         title="Remove from group"
+                                        type="button"
                                         className="transition-all hover:opacity-50"
                                         onClick={() => removeGroup(group)}
                                     >
