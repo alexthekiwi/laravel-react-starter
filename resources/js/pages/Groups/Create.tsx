@@ -1,11 +1,11 @@
 import { Head } from '@inertiajs/react';
 import Layout from '@/layouts/Layout';
-import type { Role } from '@/types';
 import GroupForm from '@/components/users/GroupForm';
 import Card from '@/components/common/Card';
+import { App } from '@/types';
 
 interface Props {
-    roles: Role[];
+    roles: App['Models']['Role'][];
 }
 
 export default function GroupsCreate({ roles }: Props) {

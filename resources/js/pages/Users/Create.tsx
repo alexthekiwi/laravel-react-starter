@@ -4,9 +4,10 @@ import UserForm from '@/components/users/UserForm';
 import Button from '@/components/common/Button';
 import { useAuth } from '@/lib/auth';
 import Card from '@/components/common/Card';
+import type { App } from '@/types';
 
 interface Props {
-    groups?: App.Models.Group[];
+    groups?: App['Models']['Group'][];
     groupId?: number;
 }
 

@@ -7,9 +7,10 @@ import Pagination from '@/components/common/Pagination';
 import SearchBar from '@/components/common/SearchBar';
 import { useAuth } from '@/lib/auth';
 import { useSubmit } from '@/lib/forms';
+import type { App } from '@/types';
 
 interface Props {
-    users: PaginatedResults<App.Models.User[]>;
+    users: PaginatedResults<App['Models']['User'][]>;
 }
 
 export default function UsersIndex({ users }: Props) {
@@ -33,7 +34,7 @@ export default function UsersIndex({ users }: Props) {
         router.post('/user-proxy', { user_id: id }, onProxy);
     }
 
-    function handleDeleteUser(user: App.Models.User) {
+    function handleDeleteUser(user: App['Models']['User']) {
         if (!confirm(`Are you sure you want to delete ${user.name}?`)) {
             return;
         }

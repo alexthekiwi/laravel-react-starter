@@ -4,8 +4,81 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6deb45e44e4de2b08b8495b6900e6392",
+    "content-hash": "3bc36120c8480de3e91ac31b7aab50ef",
     "packages": [
+        {
+            "name": "alexthekiwi/laravel-typescript",
+            "version": "0.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/alexthekiwi/laravel-typescript.git",
+                "reference": "d11e84f45b814d814392ceaf0d11b15824dd1e9c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/alexthekiwi/laravel-typescript/zipball/d11e84f45b814d814392ceaf0d11b15824dd1e9c",
+                "reference": "d11e84f45b814d814392ceaf0d11b15824dd1e9c",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/dbal": "^3.1",
+                "illuminate/contracts": "^8.37|^9.0|^10.0",
+                "php": "^8.0",
+                "spatie/laravel-package-tools": "^1.11.0"
+            },
+            "require-dev": {
+                "brianium/paratest": "^6.2",
+                "nunomaduro/collision": "^5.3|^6.1.0",
+                "nunomaduro/larastan": "^0.7.11|^2.0.1",
+                "orchestra/testbench": "^6.15|^7.0.1|^8.0",
+                "phpunit/phpunit": "^9.3"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Based\\TypeScript\\TypeScriptServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Based\\TypeScript\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Boris Lepikhin",
+                    "email": "boris@lepikhin.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Alex Clark",
+                    "email": "hello@alexclark.co.nz",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Transform Laravel models into TypeScript interfaces",
+            "homepage": "https://github.com/alexthekiwi/laravel-typescript",
+            "keywords": [
+                "laravel",
+                "typescript"
+            ],
+            "support": {
+                "source": "https://github.com/alexthekiwi/laravel-typescript/tree/0.1.1"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/lepikhinb",
+                    "type": "github"
+                }
+            ],
+            "time": "2023-02-22T22:28:35+00:00"
+        },
         {
             "name": "brick/math",
             "version": "0.10.2",

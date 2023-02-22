@@ -3,14 +3,14 @@ import route from 'ziggy-js';
 import Layout from '@/layouts/Layout';
 import { useAuth } from '@/lib/auth';
 import Button from '@/components/common/Button';
-import { PaginatedResults } from '@/types';
+import type { App, PaginatedResults } from '@/types';
 import Pagination from '@/components/common/Pagination';
 import SearchBar from '@/components/common/SearchBar';
 import { useSubmit } from '@/lib/forms';
 
 interface Props {
-    group: App.Models.Group;
-    users: PaginatedResults<App.Models.User[]>;
+    group: App['Models']['Group'];
+    users: PaginatedResults<App['Models']['User'][]>;
 }
 
 export default function GroupsShow({ group, users }: Props) {
@@ -34,7 +34,7 @@ export default function GroupsShow({ group, users }: Props) {
         router.post('/user-proxy', { user_id: id }, onProxy);
     }
 
-    function handleRemoveUser(user: App.Models.User) {
+    function handleRemoveUser(user: App['Models']['User']) {
         if (
             !confirm(
                 `This user will remain in the system, but no longer be associated with this group.`
@@ -46,7 +46,7 @@ export default function GroupsShow({ group, users }: Props) {
         router.delete(`/group-user/${group.id}/${user.id}`, onDelete);
     }
 
-    function handleDeleteUser(user: App.Models.User) {
+    function handleDeleteUser(user: App['Models']['User']) {
         if (!confirm(`Are you sure you want to delete ${user.name}?`)) {
             return;
         }

@@ -2,7 +2,7 @@
  * TypeScript definitions
  * */
 
-export * from './custom-models';
+export * from './models';
 
 export interface PaginatedResults<T = any> {
     data: T;

@@ -6,9 +6,10 @@ import { useAuth } from '@/lib/auth';
 import { handleChange, useSubmit } from '@/lib/forms';
 import Card from '@/components/common/Card';
 import Button from '@/components/common/Button';
+import type { App } from '@/types';
 
 interface Props {
-    groups: App.Models.Group[];
+    groups: App['Models']['Group'][];
 }
 
 export default function GroupsSwitchIndex({ groups }: Props) {

@@ -3,10 +3,11 @@ import React from 'react';
 import { handleChange, useSubmit } from '@/lib/forms';
 import Button from '../common/Button';
 import { useAuth } from '@/lib/auth';
+import { App } from '@/types';
 
 interface Props {
-    user?: App.Models.User;
-    groups?: App.Models.Group[];
+    user?: App['Models']['User'];
+    groups?: App['Models']['Group'][];
     groupId?: number;
 }
 
@@ -38,7 +39,7 @@ export default function UserForm({ user, groups, groupId }: Props) {
         ]);
     }
 
-    function removeGroup(group: App.Models.Group) {
+    function removeGroup(group: App['Models']['Group']) {
         if (!group) return;
 
         if (!data.group_ids.includes(group.id)) return;

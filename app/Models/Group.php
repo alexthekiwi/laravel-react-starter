@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Spatie\Permission\Models\Role;
 
 /**
  * App\Models\Group
@@ -22,7 +21,6 @@ use Spatie\Permission\Models\Role;
  * @property-read Role|null $role
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $users
  * @property-read int|null $users_count
- *
  * @method static \Database\Factories\GroupFactory factory(...$parameters)
  * @method static Builder|Group newModelQuery()
  * @method static Builder|Group newQuery()
@@ -33,7 +31,6 @@ use Spatie\Permission\Models\Role;
  * @method static Builder|Group whereName($value)
  * @method static Builder|Group whereRoleId($value)
  * @method static Builder|Group whereUpdatedAt($value)
- *
  * @mixin \Eloquent
  */
 class Group extends Model

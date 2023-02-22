@@ -4,10 +4,11 @@ import UserForm from '@/components/users/UserForm';
 import { useAuth } from '@/lib/auth';
 import Button from '@/components/common/Button';
 import Card from '@/components/common/Card';
+import type { App } from '@/types';
 
 interface Props {
-    user: App.Models.User;
-    groups?: App.Models.Group[];
+    user: App['Models']['User'];
+    groups?: App['Models']['Group'][];
 }
 
 export default function UsersEdit({ user, groups }: Props) {

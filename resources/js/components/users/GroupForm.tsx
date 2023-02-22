@@ -4,11 +4,11 @@ import { upperFirst } from 'lodash';
 import { handleChange, useSubmit } from '@/lib/forms';
 import Button from '../common/Button';
 import { useAuth } from '@/lib/auth';
-import { Role } from '@/types';
+import { App } from '@/types';
 
 interface Props {
-    group?: App.Models.Group;
-    roles?: Role[];
+    group?: App['Models']['Group'];
+    roles?: App['Models']['Role'][];
 }
 
 export default function GroupForm({ group, roles }: Props) {

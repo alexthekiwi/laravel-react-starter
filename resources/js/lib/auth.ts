@@ -1,25 +1,26 @@
 import { usePage } from '@inertiajs/react';
 import type { ErrorBag, Errors, Page, PageProps } from '@inertiajs/core';
+import { App } from '@/types';
 
-interface CurrentGroup extends App.Models.Group {
+type CurrentGroup = App['Models']['Group'] & {
     is_owner: boolean;
-}
+};
 
-interface AuthContext {
-    user: App.Models.User;
+type AuthContext = {
+    user: App['Models']['User'];
     currentGroup?: CurrentGroup;
     isAuth: boolean;
     can: (ability: string) => boolean;
-}
+};
 
-interface AppPage extends Page {
+type AppPage = {
     props: PageProps & SharedProps;
-}
+} & Page;
 
-interface SharedProps {
+type SharedProps = {
     auth: AuthContext;
     errors: Errors & ErrorBag;
-}
+};
 
 export function useAuth(): AuthContext {
     const { props } = usePage() as AppPage;
@@ -31,7 +32,7 @@ export function useAuth(): AuthContext {
         }
 
         return (
-            props.auth.currentGroup?.role.permissions.find(
+            props.auth.currentGroup?.role?.permissions?.find(
                 (permission: any) => permission.name === ability
             ) !== undefined || false
         );

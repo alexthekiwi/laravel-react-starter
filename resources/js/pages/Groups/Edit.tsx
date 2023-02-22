@@ -1,12 +1,12 @@
 import { Head } from '@inertiajs/react';
 import Layout from '@/layouts/Layout';
-import type { Role } from '@/types';
 import GroupForm from '@/components/users/GroupForm';
 import Card from '@/components/common/Card';
+import type { App } from '@/types';
 
 interface Props {
-    group: App.Models.Group;
-    roles: Role[];
+    group: App['Models']['Group'];
+    roles: App['Models']['Role'][];
 }
 
 export default function GroupsEdit({ group, roles }: Props) {

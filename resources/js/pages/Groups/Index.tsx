@@ -3,13 +3,13 @@ import route from 'ziggy-js';
 import { router, Head, Link } from '@inertiajs/react';
 import Layout from '@/layouts/Layout';
 import Button from '@/components/common/Button';
-import { PaginatedResults } from '@/types';
+import type { App, PaginatedResults } from '@/types';
 import Pagination from '@/components/common/Pagination';
 import SearchBar from '@/components/common/SearchBar';
 import { useSubmit } from '@/lib/forms';
 
 interface Props {
-    groups: PaginatedResults<App.Models.Group[]>;
+    groups: PaginatedResults<App['Models']['Group'][]>;
 }
 
 export default function GroupsIndex({ groups }: Props) {
@@ -17,7 +17,7 @@ export default function GroupsIndex({ groups }: Props) {
         message: 'Group deleted successfully.',
     });
 
-    function handleDeleteGroup(group: App.Models.Group) {
+    function handleDeleteGroup(group: App['Models']['Group']) {
         if (!confirm(`Are you sure you want to delete ${group.name}?`)) {
             return;
         }
