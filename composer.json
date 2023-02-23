@@ -37,6 +37,9 @@
         "spatie/laravel-ignition": "^2.0"
     },
     "autoload": {
+        "files": [
+            "app/helpers.php"
+        ],
         "psr-4": {
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
@@ -64,6 +67,9 @@
         ]
     },
     "extra": {
+        "include_files": [
+            "app/helpers.php"
+        ],
         "laravel": {
             "dont-discover": []
         }
